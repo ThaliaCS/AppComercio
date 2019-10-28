@@ -170,7 +170,7 @@ function chama(next) {
                         if (response.data[x].cover == undefined) {
                             cover = '<img class="card-img-top" src="'+response.data[x].picture.source+'" style="height: 180px; width: 100%; display: block;">;
                         } else {
-                            cover = '<img class="card-img-top" src="'+response.data[x].cover.source+'" style="height: 180px; width: 100%; display: block;">';
+                            cover = '<img class="card-img-top" src="'+response.data[x].picture.source+'" style="height: 180px; width: 100%; display: block;">';
                         }
                         
                         var count;
