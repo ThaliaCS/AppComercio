@@ -267,11 +267,11 @@ window.fbAsyncInit = function() {
         chama();
     }
     else {
-        FB.login();
+      /*  FB.login(); */
     }
   });
 };
-
+/*
 function login() {
         FB.login(function(response) {
             alert('test');
@@ -287,7 +287,7 @@ function login() {
             scope : "email"
         });
     }
-
+*/
 (function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {return;}
