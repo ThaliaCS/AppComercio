@@ -1,1 +1,305 @@
 
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.css">
+
+    <title>Graph FB</title>
+
+    <style>
+        .container {
+            margin-top: 70px !important;
+        }
+
+        .card {
+            width: 360px;
+            margin: 20px 5px;
+            float: left;
+        }
+        
+        .card-title {
+            font-size: 1rem !important;
+            margin-top: -15px;
+            text-shadow: 0px 0px 2px #fff;
+            color: #333 !important;
+            width: 260px;
+            height: 50px;
+        }
+        
+        .card-body {
+            padding: 1rem 1.25rem 0;
+        }
+        
+        .card-body button,
+        .card-body a {
+            margin: 0 10px 20px 0;
+        }
+
+        .photo {
+            float: right;
+            margin-top: -90px;
+            border: 2px solid #fff;
+            position: absolute;
+            right: 1.25rem;
+        }
+
+        .mais {
+            height: 303px;
+            width: 360px;
+            margin: 20px 5px;
+            /*color: #0069d9;*/
+            font-size: 2em;
+        }
+
+        .mais span {
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <!-- codigo do modal -->   
+    <div class="modal" id="mapModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">          
+          <div class="modal-body">
+            <div id="map"></div>
+          </div>          
+        </div>
+      </div>
+    </div>
+    <!-- codigo do modal -->
+    
+    <div class="container" id="main">
+        <nav class="navbar navbar-expand-lg navbar-white bg-white fixed-top">
+            <a class="navbar-brand" href="#">GraphFB</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#" data-toggle="modal" data-target="#mapModal" onClick="initMap(-24.726188,-53.731821)">Mapa</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Sobre</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Documentação</a>
+                </li>
+                  <li class="nav-item ml-5">
+                      <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="true" data-use-continue-as="true"></div>
+                  </li>
+                
+              </ul>
+            </div>
+          </nav>
+
+
+    </div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+<script>
+
+/*
+
+FB.api(
+  '/search',
+  'GET',
+  {"type":"place","center":"-24.726188,-53.731821","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"},
+  function(response) {
+      // Insert your code here
+  }
+);
+
+*/
+
+
+var limit = "150";
+var places_locations = [];
+var place = [];
+var i = 0;
+
+function chama(next) {
+        var fields;
+        
+        if (next != null) {
+          fields = {"type":"place","center":"-24.726188,-53.731821","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location","after":next};
+          $(".mais").remove();
+        } else {
+          fields = {"type":"place","center":"-24.726188,-53.731821","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"};
+        }
+        
+        FB.api(
+            '/search',
+            'GET',
+            fields,
+            function(response) {
+                //console.log(response);
+
+                var main = $("#main");
+                var str;
+
+                for (x in response.data) {
+                    //console.log(x);
+                    
+                    
+                        
+    
+                        var cover;
+                        if (response.data[x].cover == undefined) {
+                            cover = "<span style=\"height: 180px; width: 100%; display: block;\"></span>";
+                        } else {
+                            cover = '<img class="card-img-top" src="'+response.data[x].cover.source+'" style="height: 180px; width: 100%; display: block;">';
+                        }
+                        
+                        var count;
+                        if (response.data[x].engagement == undefined) {
+                            count = "";
+                        } else {
+                            count = '<button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Curtidas">'+response.data[x].engagement.count+'</button>';
+                        }
+                    
+                        var starts;
+                        if (response.data[x].overall_star_rating == undefined) {
+                            starts = "";
+                        } else {
+                            starts = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Média de estrelas">'+response.data[x].overall_star_rating+'</button>';
+                        }
+
+                        var website;
+                        if (response.data[x].website == undefined) {
+                            website = "";
+                        } else {
+                            website = '<a role="button" target="_blank" href="'+ response.data[x].website +'" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="'+ response.data[x].website +'"><span class="oi oi-home"></span></a>';
+                        }                           
+
+                        var phone;
+                        if (response.data[x].phone == undefined) {
+                            phone = "";
+                        } else {
+                            phone = '<button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="'+ response.data[x].phone +'"><span class="oi oi-phone"></span></button>';
+                        }
+                    
+                        var email;
+                        if (response.data[x].emails == undefined) {
+                            email = "";
+                        } else {
+                            email = '<button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="'+ response.data[x].emails +'"><span class="oi oi-envelope-closed"></span></button>';
+                        }                    
+
+                        var single_line_address;
+                        if (response.data[x].single_line_address == undefined) {
+                            single_line_address = "";
+                        } else {
+                            single_line_address = '<button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="'+ response.data[x].single_line_address +'"><span class="oi oi-map"></span></button>';
+                        }
+
+                        var description;
+                        if (response.data[x].description == undefined) {
+                            description = "";
+                        } else {
+                            description = 'style="cursor: pointer;" data-container="body" data-html="true" data-toggle="popover" data-placement="left" data-content="'+ response.data[x].description +'"';
+                        }
+
+
+                        str = '<div class="card">'+
+                                 cover+
+                                 '<div class="card-body">'+
+                                   '<h5 class="card-title"><a target="_blank" href="'+response.data[x].link+'">'+response.data[x].name+'</a></h5>'+
+                                   count+
+                                   starts+
+                                   website+
+                                   phone+
+                                   single_line_address+
+                                 '</div>'+
+                               '</div>';
+
+                         main.append(str);   
+                         
+                        places_locations[i] = [response.data[x].name,response.data[x].location.latitude,response.data[x].location.longitude,response.data[x].link];
+                        i++;
+       
+                    
+                  
+                }
+
+                main.append('<button class="btn btn-primary mais" type="button" onclick="chama(\''+response.paging.cursors.after+'\')"><span class="oi oi-plus"><br>Carregar mais <br> empreendimentos</span></button>');
+
+                $('[data-toggle="tooltip"]').tooltip();
+                $('[data-toggle="popover"]').popover();
+                
+
+            }
+        );
+    }  
+
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '448134622486953',
+    xfbml      : true,
+    version    : 'v4.0'
+  });
+  FB.AppEvents.logPageView();
+
+  FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+        chama();
+    }
+    else {
+        FB.login();
+    }
+  });
+};
+
+function login() {
+        FB.login(function(response) {
+            alert('test');
+            if (response.authResponse) {
+                alert('logged in');
+                var access_token =   FB.getAuthResponse()['accessToken'];
+                alert(access_token);
+                 window.location = "test.html"
+            } else {
+                alert('not logged in');
+            }
+        }, {
+            scope : "email"
+        });
+    }
+
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+    
+
+ 
+
+</script>
+
+</body>
+</html>
