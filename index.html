@@ -126,7 +126,7 @@
 FB.api(
   '/search',
   'GET',
-  {"type":"place","center":"-24.726188,-53.731821","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"},
+  {"type":"place","center":"-24.5570477,-54.0571457","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"},
   function(response) {
       // Insert your code here
   }
@@ -143,11 +143,12 @@ var i = 0;
 function chama(next) {
         var fields;
         
+         
         if (next != null) {
-          fields = {"type":"place","center":"-24.726188,-53.731821","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location","after":next};
+          fields = {"type":"place","center":"-24.5570477,-54.0571457","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location","after":next};
           $(".mais").remove();
         } else {
-          fields = {"type":"place","center":"-24.726188,-53.731821","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"};
+          fields = {"type":"place","center":"-24.5570477,-54.0571457","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"};
         }
         
         FB.api(
