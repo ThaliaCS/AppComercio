@@ -166,11 +166,11 @@ function chama(next) {
                     
                     
                         
-                     var picture;
-                        if (response.data[x].picture == undefined) {
-                            picture = '<img class="card-img-top" src="'+response.data[x].picture+'" style="height: 180px; width: 100%; display: block;">';
+                     var profile_pic;
+                        if (response.data[x].profile_pic == undefined) {
+                            profile_pic= '<img class="card-img-top" src="'+response.data[x].profile_pic+'" style="height: 180px; width: 100%; display: block;">';
                         } else {
-                            picture = '<img class="card-img-top" src="'+response.data[x].picture+'" style="height: 180px; width: 100%; display: block;">';
+                            profile_pic= '<img class="card-img-top" src="'+response.data[x].profile_pic+'" style="height: 180px; width: 100%; display: block;">';
                         }
                         
                         var count;
