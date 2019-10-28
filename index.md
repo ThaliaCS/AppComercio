@@ -256,7 +256,7 @@ function chama(next) {
 
 window.fbAsyncInit = function() {
   FB.init({
-    appId      : '448134622486953',
+    appId      : '1404631323073610',
     xfbml      : true,
     version    : 'v4.0'
   });
