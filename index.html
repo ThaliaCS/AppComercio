@@ -222,6 +222,14 @@ function chama(next) {
                         } else {
                             description = 'style="cursor: pointer;" data-container="body" data-html="true" data-toggle="popover" data-placement="left" data-content="'+ response.data[x].description +'"';
                         }
+                     var instagram_business_account;
+                      
+                        if (response.data[x].instagram_business_account == undefined) {
+                          instagram_business_account = "";
+                        } else {
+                          instagram_business_account = 'style="cursor: pointer;" data-container="body" data-html="true" data-toggle="popover" data-placement="left" data-content="'+ response.data[x].instagram_business_account +'"';
+                        }
+
 
 
                         str = '<div class="card">'+
