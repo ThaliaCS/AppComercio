@@ -166,10 +166,9 @@ function chama(next) {
                     
                     
                         
-    
-                        var cover;
+                     var cover;
                         if (response.data[x].cover == undefined) {
-                            cover = "<span style=\"height: 180px; width: 100%; display: block;\"></span>";
+                            cover = '<img class="card-img-top" src="'+response.data[x].picture.source+'" style="height: 180px; width: 100%; display: block;">;
                         } else {
                             cover = '<img class="card-img-top" src="'+response.data[x].cover.source+'" style="height: 180px; width: 100%; display: block;">';
                         }
