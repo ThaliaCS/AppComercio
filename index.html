@@ -120,11 +120,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPPfsgS-uY3YJC5Q3L3bi2Wujvj6_2Yik&callback=initMap"
    async defer></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
 
 
 <script>
     
-     var map;
+     var map,  infoWindow;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat:-24.728576, lng: -53.739267},
