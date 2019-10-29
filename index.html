@@ -18,7 +18,6 @@
      
       /* Optional: Makes the sample page fill the window. */
      
-
         .card {
             width: 360px;
             margin: 20px 5px;
@@ -42,7 +41,6 @@
         .card-body a {
             margin: 0 10px 20px 0;
         }
-
         .photo {
             float: right;
             margin-top: -90px;
@@ -50,7 +48,6 @@
             position: absolute;
             right: 1.25rem;
         }
-
         .mais {
             height: 303px;
             width: 360px;
@@ -58,7 +55,6 @@
             /*color: #0069d9;*/
             font-size: 2em;
         }
-
         .mais span {
             text-align: center;
             vertical-align: middle;
@@ -68,7 +64,6 @@
             height: 600px;
             width: 100%;
         }
-
     </style>
 </head>
 <body>
@@ -79,7 +74,8 @@
         <div class="modal-content">          
           <div class="modal-body">
             <div id="map">
-               
+                
+                
                 
            </div>
           </div>          
@@ -136,36 +132,7 @@
         }); 
       }
       
-    /*
-map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-   // Evento que detecta o click no mapa para criar o marcador
-   google.maps.event.addListener(map, "click", function(event) {
-
-      // O evento "click" retorna a posição do click no mapa,
-      // através dos métodos latLng.lat() e latLng.lng().
-
-      // Passamos as respectivas coordenadas para as variáveis lat e lng
-      // para posterior referência.
-      // Utilizamos o método toFixed(6) para limitar o número de casas decimais.
-      // A API ignora os valores além da 6ª casa decimal
-      var lat = event.latLng.lat().toFixed(6);
-      var lng = event.latLng.lng().toFixed(6);
-
-      // A criação do marcador é feita na função createMarker() e
-      // passamos os valores das coordenadas do click através
-      // dos parâmetros lat e lng.
-      createMarker(lat, lng);
-
-      // getCoords() actualiza os valores de Latitue e Longitude
-      // das caixas de texto existentes no topo da página
-      getCoords(lat, lng);
-
-   });
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-
-
+/*
 FB.api(
   '/search',
   'GET',
@@ -175,21 +142,19 @@ FB.api(
   }
 );
 */
-
 var limit = "150";
 var places_locations = [];
 var place = [];
 var i = 0;
-
 function chama(next) {
         var fields;
         
          
         if (next != null) {
-          fields = {"type":"place","center":"lat,lng","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location","after":next};
+          fields = {"type":"place","center":"-24.5570477,-54.0571457","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location","after":next};
           $(".mais").remove();
         } else {
-          fields = {"type":"place","center":"lat,lng","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"};
+          fields = {"type":"place","center":"-24.5570477,-54.0571457","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"};
         }
         
         FB.api(
@@ -198,10 +163,8 @@ function chama(next) {
             fields,
             function(response) {
                 //console.log(response);
-
                 var main = $("#main");
                 var str;
-
                 for (x in response.data) {
                     //console.log(x);
                     
@@ -235,14 +198,12 @@ function chama(next) {
                         } else {
                             starts = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Média de estrelas">'+response.data[x].overall_star_rating+'</button>';
                         }
-
                         var website;
                         if (response.data[x].website == undefined) {
                             website = "";
                         } else {
                             website = '<a role="button" target="_blank" href="'+ response.data[x].website +'" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="'+ response.data[x].website +'"><span class="oi oi-home"></span></a>';
                         }                           
-
                         var phone;
                         if (response.data[x].phone == undefined) {
                             phone = "";
@@ -256,14 +217,12 @@ function chama(next) {
                         } else {
                             email = '<button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="'+ response.data[x].emails +'"><span class="oi oi-envelope-closed"></span></button>';
                         }                    
-
                         var single_line_address;
                         if (response.data[x].single_line_address == undefined) {
                             single_line_address = "";
                         } else {
                             single_line_address = '<button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="'+ response.data[x].single_line_address +'"><span class="oi oi-map"></span></button>';
                         }
-
                         var description;
                         if (response.data[x].description == undefined) {
                             description = "";
@@ -277,9 +236,6 @@ function chama(next) {
                         } else {
                           instagram_business_account = 'style="cursor: pointer;" data-container="body" data-html="true" data-toggle="popover" data-placement="left" data-content="'+ response.data[x].instagram_business_account +'"';
                         }
-
-
-
                         str = '<div class="card">'+
                                  cover+
                                  '<div class="card-body">'+
@@ -291,7 +247,6 @@ function chama(next) {
                                    single_line_address+
                                  '</div>'+
                                '</div>';
-
                          main.append(str);   
                          
                         places_locations[i] = [response.data[x].name,response.data[x].location.latitude,response.data[x].location.longitude,response.data[x].link];
@@ -300,17 +255,13 @@ function chama(next) {
                     
                   
                 }
-
                 main.append('<button class="btn btn-primary mais" type="button" onclick="chama(\''+response.paging.cursors.after+'\')"><span class="oi oi-plus"><br>Carregar mais <br> empreendimentos</span></button>');
-
                 $('[data-toggle="tooltip"]').tooltip();
                 $('[data-toggle="popover"]').popover();
                 
-
             }
         );
     }  
-
 window.fbAsyncInit = function() {
   FB.init({
     appId      : '1404631323073610',
@@ -318,7 +269,6 @@ window.fbAsyncInit = function() {
     version    : 'v4.0'
   });
   FB.AppEvents.logPageView();
-
   FB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
         chama();
@@ -328,7 +278,6 @@ window.fbAsyncInit = function() {
     }
   });
 };
-
 function login() {
         FB.login(function(response) {
             alert('test');
@@ -344,7 +293,6 @@ function login() {
             scope : "email"
         });
     }
-
 (function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {return;}
@@ -353,9 +301,7 @@ function login() {
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
     
-
  
-
 </script>
 
 </body>
