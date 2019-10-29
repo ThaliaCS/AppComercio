@@ -168,8 +168,7 @@ function chama(next) {
                      
                      var profile_pic;
                         if (response.data[x].profile_pic == undefined) {
-                            profile_pic= '<img class="card-img-top" src="'+response.data[x].profile_pic+'" redirect=0, style="height: 180px; width: 100%; display: block;">';
-                        } else {
+                            profile_pic= "";
                             profile_pic= '<img class="card-img-top" src="'+response.data[x].profile_pic+'" redirect=0, style="height: 180px; width: 100%; display: block;">';
                         }
                         
