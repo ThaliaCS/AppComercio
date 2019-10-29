@@ -137,7 +137,33 @@
         }); 
       }
       
+map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
+   // Evento que detecta o click no mapa para criar o marcador
+   google.maps.event.addListener(map, "click", function(event) {
+
+      // O evento "click" retorna a posição do click no mapa,
+      // através dos métodos latLng.lat() e latLng.lng().
+
+      // Passamos as respectivas coordenadas para as variáveis lat e lng
+      // para posterior referência.
+      // Utilizamos o método toFixed(6) para limitar o número de casas decimais.
+      // A API ignora os valores além da 6ª casa decimal
+      var lat = event.latLng.lat().toFixed(6);
+      var lng = event.latLng.lng().toFixed(6);
+
+      // A criação do marcador é feita na função createMarker() e
+      // passamos os valores das coordenadas do click através
+      // dos parâmetros lat e lng.
+      createMarker(lat, lng);
+
+      // getCoords() actualiza os valores de Latitue e Longitude
+      // das caixas de texto existentes no topo da página
+      getCoords(lat, lng);
+
+   });
+}
+google.maps.event.addDomListener(window, 'load', initialize);
 /*
 
 FB.api(
@@ -160,10 +186,10 @@ function chama(next) {
         
          
         if (next != null) {
-          fields = {"type":"place","center":"-24.5570477,-54.0571457","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location","after":next};
+          fields = {"type":"place","center":"lat,lng","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location","after":next};
           $(".mais").remove();
         } else {
-          fields = {"type":"place","center":"-24.5570477,-54.0571457","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"};
+          fields = {"type":"place","center":"lat,lng","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"};
         }
         
         FB.api(
