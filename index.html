@@ -140,6 +140,9 @@
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
+    var infoWindow = new google.maps.InfoWindow({
+      content: name
+    });
       
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
@@ -147,6 +150,9 @@
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
+          
+    var lat = placeData.geometry.location.lat();  // latitude from the place service
+    var lng = placeData.geometry.location.lng()
           
           var map;
       function initMap() {
