@@ -182,7 +182,7 @@ function chama(next) {
         //-24.5570477,-54.0571457","
          
         if (next != null) {
-          fields = {"type":"place","center": "showPosition.latitude,showPosition.longitude, "distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location","after":next};
+          fields = {"type":"place","center": "showPosition.latitude,showPosition.longitude", "distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location","after":next};
           $(".mais").remove();
         } else {
           fields = {"type":"place","center":"showPosition.latitude,showPosition.longitude","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"};
