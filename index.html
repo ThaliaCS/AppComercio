@@ -121,14 +121,12 @@
    <script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCPPfsgS-uY3YJC5Q3L3bi2Wujvj6_2Yik&" ></script>
 
 <script>
-  //script para captura de geolocalização do visitante da página web.
-  if (navigator.geolocation) {
+   if (navigator.geolocation) {
  navigator.geolocation.getCurrentPosition(showPosition);
  } else {
  alert("O seu navegador não suporta Geolocalização.");
  }
-
- 
+var latitude, longitude;
 // função de retorno caso o navegador suporte Geolocalização.
  function showPosition(position) {
  // guarda os valores capturados em variáveis.
@@ -162,6 +160,7 @@ function initialize() {
  infowindow.open(map, marker);
  });
  }
+
 
 /*
 FB.api(
