@@ -134,7 +134,7 @@
  latitude = position.coords.latitude;
  longitude = position.coords.longitude;
  map = 0;
- google.maps.event.addDomListener(window, 'load', initialize());
+ new google.maps.event.addDomListener(window, 'load', initialize());
  }
 
 function initialize() {
