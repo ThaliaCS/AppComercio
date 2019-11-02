@@ -118,7 +118,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPPfsgS-uY3YJC5Q3L3bi2Wujvj6_2Yik&"async defer></script>
-   <script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCPPfsgS-uY3YJC5Q3L3bi2Wujvj6_2Yik&" async defer></script>
+   <script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCPPfsgS-uY3YJC5Q3L3bi2Wujvj6_2Yik&" ></script>
 
 <script>
   //script para captura de geolocalização do visitante da página web.
@@ -128,14 +128,14 @@
  alert("O seu navegador não suporta Geolocalização.");
  }
 
-   var latidude, longitude;
+ 
 // função de retorno caso o navegador suporte Geolocalização.
  function showPosition(position) {
  // guarda os valores capturados em variáveis.
  latitude = position.coords.latitude;
  longitude = position.coords.longitude;
  map = 0;
- new google.maps.event.addDomListener(window, 'load', initialize());
+ google.maps.event.addDomListener(window, 'load', initialize());
  }
 
 function initialize() {
@@ -182,10 +182,10 @@ function chama(next) {
         //-24.5570477,-54.0571457","
          
         if (next != null) {
-          fields = {"type":"place","center":" latidude, longitude","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location","after":next};
+          fields = {"type":"place","center":" position.coords.latitude, position.coords.longitude ","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location","after":next};
           $(".mais").remove();
         } else {
-          fields = {"type":"place","center":" latidude, longitude","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"};
+          fields = {"type":"place","center":" position.coords.latitude, position.coords.longitude ","distance":"10000","categories":"[\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"ARTS_ENTERTAINMENT\",\"EDUCATION\",\"FITNESS_RECREATION\",\"MEDICAL_HEALTH\",\"SHOPPING_RETAIL\",\"TRAVEL_TRANSPORTATION\"]","fields":"name,overall_star_rating,rating_count,engagement,phone,single_line_address,website,category_list,link,emails,description,cover,hours,place_type,location"};
         }
         
         FB.api(
