@@ -249,7 +249,7 @@ function chama(next) {
                     
                         var cover;
                         if (response.data[x].cover == undefined) {
-                            cover = "<span style=\"height: 180px; width: 100%; display: block; background-image:url("img/sem_foto.png");\"></span>";
+                            cover = '<img class="sem"> style=\"height: 180px; width: 100%; display: block;\"></span>";
                         } else {
                             cover = '<img class="card-img-top" src="'+response.data[x].cover.source+'" style="height: 180px; width: 100%; display: block;">';
                         }
